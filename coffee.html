@@ -58,18 +58,7 @@
     <input type="text" ng-model="coffee" ng-disabled="!edit" placeholder="coffee">
     </div>
   </div>
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Password:</label>
-    <div class="col-sm-10">
-    <input type="password" ng-model="passw1" placeholder="Password">
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Repeat Password:</label>
-    <div class="col-sm-10">
-    <input type="password" ng-model="passw2" placeholder="Repeat Password">
-    </div>
-  </div>
+ 
 </form>
 
 <hr>
@@ -83,13 +72,11 @@
   function userController($scope) {
     $scope.fName = '';
     $scope.coffee = '';
-    $scope.passw1 = '';
-    $scope.passw2 = '';
     
     //We can replace this with a Firebase url later on. 
     $scope.users = [
         {id:1, fName:'Hege'  , coffee:"Moccha" },
-        {id:2, fName:'Kim'   , coffee:"Hot Chololate" },
+        {id:2, fName:'Kim'   , coffee:"Hot Chocolate" },
         {id:3, fName:'Jack'  , coffee:"Flat White" },
         {id:4, fName:'John'  , coffee:"Black" },
         {id:5, fName:'Peter' , coffee:"Kopi O" }
@@ -116,18 +103,12 @@
         }
     };
     
-    $scope.$watch('passw1',function() {$scope.test();});
-    $scope.$watch('passw2',function() {$scope.test();});
     $scope.$watch('fName', function() {$scope.test();});
     $scope.$watch('coffee', function() {$scope.test();});
     $scope.test = function() {
-        if ($scope.passw1 !== $scope.passw2) {
-            $scope.error = true;
-        } else {
-            $scope.error = false;
-        }
+        
         $scope.incomplete = false;
-        if ($scope.edit && (!$scope.fName.length || !$scope.coffee.length|| !$scope.passw1.length || !$scope.passw2.length)) {
+        if ($scope.edit && (!$scope.fName.length || !$scope.coffee.length)) {
             $scope.incomplete = true;
         }
     };
